@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kravix-project
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kravix-project
+  template:
+    metadata:
+      labels:
+        app: kravix-project
+    spec:
+      containers:
+      - name: kravix-project
+        image: chandana172/kravix-project:v1
+        ports:
+        - containerPort: 80
