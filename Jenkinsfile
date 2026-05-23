@@ -23,13 +23,15 @@ pipeline {
         }
 
         stage('Deploy to Kubernetes') {
-            steps {
-                bat 'kubectl apply -f configmap.yaml'
-                bat 'kubectl apply -f secret.yaml'
-                bat 'kubectl apply -f deployment.yaml'
-                bat 'kubectl apply -f service.yaml'
-                bat 'kubectl apply -f ingress.yaml'
-            }
-        }
+    steps {
+        bat '''
+        set KUBECONFIG=C:\\ProgramData\\Jenkins\\.kube\\config
+        kubectl apply -f configmap.yaml --validate=false
+        kubectl apply -f secret.yaml --validate=false
+        kubectl apply -f deployment.yaml --validate=false
+        kubectl apply -f service.yaml --validate=false
+        kubectl apply -f ingress.yaml --validate=false
+        '''
     }
+}    }
 }
