@@ -3,9 +3,15 @@ pipeline {
 
     stages {
 
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/manichandana17/kravix-devops-project.git'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t chandana172/kravix-project:v1 .'
+                bat 'docker build --platform linux/amd64 -t chandana172/kravix-project:v1 .'
             }
         }
 
